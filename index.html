@@ -61,6 +61,51 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-WebView中软键盘会遮挡输入框" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/10/12/WebView中软键盘会遮挡输入框/" class="article-date">
+  <time datetime="2017-10-12T07:01:34.639Z" itemprop="datePublished">2017-10-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/12/WebView中软键盘会遮挡输入框/">WebView中软键盘会遮挡输入框</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>要想实现这种软键盘出现的时候会自动把输入框的布局顶上去的效果，需要设置输入法的属性，有以下两种设置方式：  </p>
+<p>一、在java代码中设置如下：  </p>
+<pre><code>getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZ |WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+</code></pre><p>二、在androidmanifest.xml中设置与其对应的activity的属性如下： </p>
+<pre><code>android:windowSoftInputMode=&quot;stateHidden|adjustPan&quot; 
+</code></pre><p>正常情况下，设置了该属性之后，软键盘在弹出时，输入框便不会被遮挡。但是该属性在有些情况下是不生效的，目前我所知的是以下两种情况：<br>1.当前activity被设置了全屏属性，即：</p>
+<pre><code>android:theme=&quot;@android:styleTheme.Black.NoTitleBar.Fullscreen&quot;  
+</code></pre><p>2.webview的相关布局被固定了高度，这里也分为两种情况：<br>a. 根布局固定了高度，这里的根布局是webview所在的Activity的最外层布局；<br>b. 根布局未固定高度，但是根布局是FrameLayout布局，而webview或者其父控件被固定了高度。（项目中遇到的就是这种情况，经过反复对比测试，终于找到原因，希望分享出来，能帮助其他人）<br>以上的这两种固定的高度都会导致软键盘遮挡输入框的问题，需格外留意。  </p>
+<p><strong>ps：固定了高度，是指layout_height属性被赋予了具体多少dp或px。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/10/12/WebView中软键盘会遮挡输入框/" data-id="cj8o4hnhe0001zozamedb9i4t" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/10/12/hello-world/" class="article-date">
@@ -96,7 +141,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/10/12/hello-world/" data-id="cj8o4cpaf000074za58rs114m" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/10/12/hello-world/" data-id="cj8o4hnh70000zozaxw4jhpgr" class="article-share-link">Share</a>
       
       
     </footer>
@@ -134,6 +179,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/10/12/WebView中软键盘会遮挡输入框/">WebView中软键盘会遮挡输入框</a>
+          </li>
         
           <li>
             <a href="/2017/10/12/hello-world/">Hello World</a>
